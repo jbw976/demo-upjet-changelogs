@@ -1,0 +1,12 @@
+apiVersion: s3.aws.upbound.io/v1beta2
+kind: BucketOwnershipControls
+metadata:
+  name: crossplane-bucket-ownership-controls
+spec:
+  forProvider:
+    rule:
+      objectOwnership: BucketOwnerPreferred
+    bucketSelector:
+      matchLabels:
+        testing.crossplane.io/scenario: changelogs-bucket
+    region: us-west-1
