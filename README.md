@@ -35,9 +35,18 @@ kubectl apply -f bucket-acl.yaml
 
 ## Examine the change logs
 
-Check the change logs to see the objects create operations being recorded:
+Check the change logs to see the objects create operations being recorded, using
+a `jq` filter to look at a subset of the fields:
 ```
 kubectl -n crossplane-system logs -l pkg.crossplane.io/provider=provider-aws-s3 --tail=500 -c changelogs-sidecar | jq '.timestamp + " " + .provider + " " + .name + " " + .operation'
+```
+
+Here's an example of what these filtered logs look like:
+```
+"2025-04-30T15:18:37Z provider-kubernetes:v1.21.1-18.ga1784c7e5.dirty crossplane-bucket-zzgts OPERATION_TYPE_CREATE"
+"2025-04-30T15:18:50Z provider-kubernetes:v1.21.1-18.ga1784c7e5.dirty crossplane-bucket-ownership-controls OPERATION_TYPE_CREATE"
+"2025-04-30T15:18:51Z provider-kubernetes:v1.21.1-18.ga1784c7e5.dirty crossplane-bucket-acl OPERATION_TYPE_CREATE"
+"2025-04-30T15:18:51Z provider-kubernetes:v1.21.1-18.ga1784c7e5.dirty crossplane-bucket-public-access-block OPERATION_TYPE_CREATE"
 ```
 
 Some other useful change logs examination commands:
