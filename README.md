@@ -77,6 +77,10 @@ on if the bucket is deleted first, some of the other configuration objects may
 not need an AWS API call to be deleted:
 ```
 kubectl -n crossplane-system logs -l pkg.crossplane.io/provider=provider-aws-s3 --tail=500 -c changelogs-sidecar | jq '.timestamp + " " + .provider + " " + .name + " " + .operation'
+...
+"2025-04-30T15:20:14Z provider-kubernetes:v1.21.1-18.ga1784c7e5.dirty crossplane-bucket-ownership-controls OPERATION_TYPE_DELETE"
+"2025-04-30T15:20:16Z provider-kubernetes:v1.21.1-18.ga1784c7e5.dirty crossplane-bucket-public-access-block OPERATION_TYPE_DELETE"
+"2025-04-30T15:20:20Z provider-kubernetes:v1.21.1-18.ga1784c7e5.dirty crossplane-bucket-zzgts OPERATION_TYPE_DELETE"
 ```
 
 Ensure no more resources are left behind:
