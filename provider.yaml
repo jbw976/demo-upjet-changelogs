@@ -3,7 +3,7 @@ kind: Provider
 metadata:
   name: provider-aws-s3
 spec:
-  package: index.docker.io/jbw976/provider-aws-s3:v1.22.0-11.g64da26cb3
+  package: index.docker.io/jbw976/provider-aws-s3:v1.22.0-18.g7e62eb585
   runtimeConfigRef:
     apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig
